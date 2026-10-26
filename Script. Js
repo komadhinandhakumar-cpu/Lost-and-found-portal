@@ -1,0 +1,35 @@
+const form = document.getElementById("itemForm");
+const itemList = document.getElementById("itemList");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("itemName").value.trim();
+    const status = document.getElementById("itemStatus").value;
+    const location = document.getElementById("itemLocation").value.trim();
+    const description = document.getElementById("itemDescription").value.trim();
+
+    if (!name || !status || !location || !description) {
+        alert("Please fill all fields!");
+        return;
+    }
+
+    const item = document.createElement("div");
+    item.className = "item";
+
+    const title = document.createElement("h3");
+    title.textContent = name + " - " + status;
+
+    const place = document.createElement("p");
+    place.textContent = "Location: " + location;
+
+    const details = document.createElement("p");
+    details.textContent = "Description: " + description;
+
+    item.append(title, place, details);
+    itemList.prepend(item);
+
+    form.reset();
+
+    alert("Item submitted successfully!");
+});
